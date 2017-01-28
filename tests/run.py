@@ -10,7 +10,7 @@ if __name__ == '__main__':
     from taxjar.exceptions import TaxJarResponseError
     import time
 
-    taxjar = TaxJarClient()
+    taxjar = TaxJarClient("4761b5420b86988ca376712b20f743cb")
     rate = taxjar.rates_for_location('90210')
     print(rate)
     cats = taxjar.categories()

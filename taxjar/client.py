@@ -3,7 +3,9 @@ from taxjar.response import TaxJarResponse
 
 class TaxJarClient:
     API_URL = "http://taxjar.dev:3002/v2/"
-    API_KEY = "4761b5420b86988ca376712b20f743cb"
+
+    def __init__(self, key):
+        self.api_key = key
 
     def rates_for_location(self, postal_code):
         request = self._get("rates/" + postal_code)
@@ -70,7 +72,7 @@ class TaxJarClient:
         return TaxJarResponse().from_request(request)
 
     def _headers(self):
-        return { "Authorization": "Bearer " + self.API_KEY }
+        return { "Authorization": "Bearer " + self.api_key }
 
     def _get(self, endpoint, extra_data = {}):
         return requests.get(self.uri(endpoint), headers = self._headers(), params = extra_data)
