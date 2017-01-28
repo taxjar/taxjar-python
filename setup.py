@@ -4,6 +4,7 @@ setup(
     name = 'TaxJar',
     version = '0.0.1',
     author = 'TaxJar',
+    author_email = 'support@taxjar.com',
     url = 'https://developers.taxjar.com',
     description = 'Python client library for the TaxJar API',
     packages = ['taxjar']
