@@ -6,11 +6,11 @@ if __name__ == '__main__':
     taxjar_dir = os.path.join(tests_dir, os.path.pardir)
     sys.path.append(taxjar_dir)
 
-    from taxjar.base import TaxJar
+    from taxjar.client import TaxJarClient
     from taxjar.exceptions import TaxJarResponseError
     import time
 
-    taxjar = TaxJar()
+    taxjar = TaxJarClient()
     rate = taxjar.rates_for_location('90210')
     print(rate)
     cats = taxjar.categories()

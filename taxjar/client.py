@@ -1,7 +1,7 @@
 import requests
 from taxjar.response import TaxJarResponse
 
-class TaxJar:
+class TaxJarClient:
     API_URL = "http://taxjar.dev:3002/v2/"
     API_KEY = "4761b5420b86988ca376712b20f743cb"
 
