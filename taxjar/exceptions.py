@@ -3,3 +3,6 @@ class TaxJarError(Exception):
 
 class TaxJarResponseError(TaxJarError):
     """Response errors (400, 500)"""
+
+class TaxJarConnectionError(TaxJarError):
+    """Connection errrors"""

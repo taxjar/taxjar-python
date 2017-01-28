@@ -1,11 +1,13 @@
 import requests
 from taxjar.response import TaxJarResponse
+from taxjar.exceptions import TaxJarConnectionError
 
 class TaxJarClient:
     API_URL = "http://taxjar.dev:3002/v2/"
 
-    def __init__(self, key):
+    def __init__(self, key, options = {}):
         self.api_key = key
+        self.timeout = options.get('timeout', 5)
 
     def rates_for_location(self, postal_code):
         request = self._get("rates/" + postal_code)
@@ -74,17 +76,26 @@ class TaxJarClient:
     def _headers(self):
         return { "Authorization": "Bearer " + self.api_key }
 
-    def _get(self, endpoint, extra_data = {}):
-        return requests.get(self.uri(endpoint), headers = self._headers(), params = extra_data)
+    def _get(self, endpoint, data = {}):
+        return self._request(requests.get, endpoint, { 'params': data })
 
     def _post(self, endpoint, data):
-        return requests.post(self.uri(endpoint), headers = self._headers(), json = data)
+        return self._request(requests.post, endpoint, { 'json': data })
 
     def _put(self, endpoint, data):
-        return requests.put(self.uri(endpoint), headers = self._headers(), json = data)
+        return self._request(requests.put, endpoint, { 'json': data })
 
     def _delete(self, endpoint):
-        return requests.delete(self.uri(endpoint), headers = self._headers())
+        return self._request(requests.delete, endpoint)
 
-    def uri(self, endpoint):
+    def _request(self, method, endpoint, data = {}):
+        try:
+            data['timeout'] = self.timeout
+            return method(self._uri(endpoint), headers = self._headers(), **data)
+        except requests.Timeout as e:
+            raise TaxJarConnectionError(e)
+        except requests.ConnectionError as e:
+            raise TaxJarConnectionError(e)
+
+    def _uri(self, endpoint):
         return self.API_URL + endpoint
