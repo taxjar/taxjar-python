@@ -3,7 +3,11 @@ from taxjar.exceptions import TaxJarResponseError
 from IPython import embed
 
 class TaxJarResponse:
-    def from_request(self, request):
+    @staticmethod
+    def from_request(request):
+        return TaxJarResponse().data_from_request(request)
+
+    def data_from_request(self, request):
         response = request.json()
         if 200 <= request.status_code <= 400:
             (type_name, values), = response.items()
