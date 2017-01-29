@@ -1,6 +1,5 @@
-from taxjar.data import TaxJarData
+from taxjar.factory import TaxJarTypeFactory
 from taxjar.exceptions import TaxJarResponseError
-from IPython import embed
 
 class TaxJarResponse:
     @staticmethod
@@ -11,7 +10,7 @@ class TaxJarResponse:
         response = request.json()
         if 200 <= request.status_code <= 400:
             (type_name, values), = response.items()
-            return TaxJarData.build_from_response(type_name, values)
+            return TaxJarTypeFactory.build(type_name)(values)
         else:
             self.raise_response_error(response)
 

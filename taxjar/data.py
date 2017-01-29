@@ -1,20 +1,4 @@
 class TaxJarData:
-    @staticmethod
-    def build_from_response(data_type, values):
-        classes_by_type = {
-            'rate': TaxJarRate,
-            'categories': TaxJarCategories,
-            'tax': TaxJarTax,
-            'orders': TaxJarOrders,
-            'order': TaxJarOrder,
-            'refunds': TaxJarOrders,
-            'refund': TaxJarOrder,
-            'regions': TaxJarRegions,
-            'validation': TaxJarValidation,
-            'summary_rates': TaxJarSummaryRates
-        }
-        return classes_by_type[data_type](values)
-
     def __init__(self, values):
         self.handle_response(values)
 
