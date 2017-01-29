@@ -21,6 +21,7 @@ class TestTaxJarFactory(unittest.TestCase):
         self.request.json = MagicMock(return_value = { 'status': 500, 'error': 'Server Error', 'detail': 'some detail' })
         try:
             TaxJarResponse().data_from_request(self.request)
+            self.assertTrue(False)
         except TaxJarResponseError as e:
             self.assertEqual(str(e), "500 Server Error")
             self.assertEqual(e.full_response['detail'], 'some detail')
