@@ -3,7 +3,7 @@ from taxjar.response import TaxJarResponse
 from taxjar.exceptions import TaxJarConnectionError
 
 class TaxJarClient:
-    API_URL = "http://taxjar.dev:3002/v2/"
+    API_URL = "http://api.taxjar.com/v2/"
     VERSION = '0.0.1'
 
     def __init__(self, key, options = {}, responder = TaxJarResponse.from_request):
