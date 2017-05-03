@@ -46,7 +46,7 @@ client.categories
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.categories
+client.categories()
 ```
 
 ### List tax rates for a location (by zip/postal code)
@@ -63,17 +63,28 @@ client.rates_for_location
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
+# United States (ZIP+4)
 rates = client.rates_for_location('90404-3370')
 
-# TODO - optional params not supported yet
 # United States (ZIP w/ Optional Params)
-client.rates_for_location('90404', {
+rates = client.rates_for_location('90404', {
   'city': 'SANTA MONICA',
   'country': 'US'
 })
+
+# International Examples (Requires City and Country)
+rates = client.rates_for_location('V5K0A1', {
+  'city': 'VANCOUVER',
+  'country': 'CA'
+})
+
+rates = client.rates_for_location('00150', {
+  'city': 'HELSINKI',
+  'country': 'FI'
+})
 ```
 
-### Calculate Sales tax for an order
+### Calculate sales tax for an order
 
 #### Definition
 
@@ -340,7 +351,7 @@ client.nexus_regions
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-nexus_regions = client.nexus_regions
+nexus_regions = client.nexus_regions()
 ```
 
 ### Validate a VAT number
@@ -377,7 +388,7 @@ client.summary_rates
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.summary_rates
+client.summary_rates()
 ```
 
 <!--### Custom Options
