@@ -391,15 +391,18 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 client.summary_rates()
 ```
 
-<!--### Custom Options
+### Custom Options
 
-#### TODO - not supported
+Pass additional parameters when instantiating the client for the following options:
+
+#### Timeouts
 
 Set request timeout in seconds:
 
 ```python
-client.tax_for_order({ timeout: 30 })
-```-->
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78', options={'timeout':30})
+```
 
 ## Tests
 
