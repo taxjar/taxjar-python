@@ -1,6 +1,6 @@
+import unittest
 import requests
 import taxjar
-import unittest
 from mock import MagicMock, patch
 
 class TestClient(unittest.TestCase):

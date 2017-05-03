@@ -117,7 +117,8 @@ class Client(object):
         except requests.ConnectionError as err:
             raise TaxJarConnectionError(err)
 
-    def _uri(self, endpoint):
+    @staticmethod
+    def _uri(endpoint):
         return taxjar.API_URL + endpoint
 
     def _headers(self):

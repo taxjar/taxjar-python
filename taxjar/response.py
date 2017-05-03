@@ -14,7 +14,8 @@ class TaxJarResponse(object):
         else:
             self.raise_response_error(response)
 
-    def raise_response_error(self, response):
+    @staticmethod
+    def raise_response_error(response):
         status = response['status']
         error = response['error']
         detail = response['detail']

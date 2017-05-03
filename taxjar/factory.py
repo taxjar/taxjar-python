@@ -1,5 +1,13 @@
-from taxjar.data import *
-from taxjar.exceptions import TaxJarTypeError
+from taxjar.data import (
+    TaxJarRate,
+    TaxJarCategories,
+    TaxJarTax,
+    TaxJarOrder,
+    TaxJarOrders,
+    TaxJarRegions,
+    TaxJarValidation,
+    TaxJarSummaryRates
+)
 
 class TaxJarTypeFactory(object):
     @staticmethod
