@@ -7,14 +7,14 @@ A client for interacting with SmartCalcs by TaxJar.
 
 ## Supported Python Versions
 
-Python 3 or greater
+Python 2.6+ or Python 3+
 
 ## Installation
 
 FIXME
 
 ```shell
-pip install taxjar-python
+pip install taxjar
 ```
 
 ## Quick Start Guide
