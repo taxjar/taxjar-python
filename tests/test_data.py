@@ -1,6 +1,5 @@
 import unittest
-from mock import MagicMock, patch
-from taxjar.data import *
+from taxjar.data import TaxJarData, TaxJarCategories
 
 class TestTaxJarData(unittest.TestCase):
     def test_response_handling(self):

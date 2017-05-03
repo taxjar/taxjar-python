@@ -1,7 +1,7 @@
 import unittest
+from mock import MagicMock, patch
 import requests
 import taxjar
-from mock import MagicMock, patch
 
 class TestClient(unittest.TestCase):
     def setUp(self):
@@ -16,8 +16,14 @@ class TestClient(unittest.TestCase):
         self.assert_request_occurred(action, 'get', 'rates/90210', {})
 
     def test_rates_for_location_with_deets(self):
-        action = lambda _: self.client.rates_for_location('90210', {'city': 'Beverly Hills', 'country': 'US'})
-        self.assert_request_occurred(action, 'get', 'rates/90210', {'city': 'Beverly Hills', 'country': 'US'})
+        action = lambda _: self.client.rates_for_location('90210', {
+            'city': 'Beverly Hills',
+            'country': 'US'
+        })
+        self.assert_request_occurred(action, 'get', 'rates/90210', {
+            'city': 'Beverly Hills',
+            'country': 'US'
+        })
 
     def test_categories(self):
         action = lambda _: self.client.categories()
@@ -90,7 +96,11 @@ class TestClient(unittest.TestCase):
         url = self.api_url + uri
         with patch.object(requests, request_method) as request_mock:
             action(0)
-            request_mock.assert_called_with(url, headers = self.headers, **self._request_args(request_method, params))
+            request_mock.assert_called_with(
+                url,
+                headers=self.headers,
+                **self._request_args(request_method, params)
+            )
             self.responder_mock.assert_called_with(request_mock.return_value)
 
     def _request_args(self, method, params):
