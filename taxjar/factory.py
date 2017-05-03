@@ -1,7 +1,7 @@
 from taxjar.data import *
-from taxjar.exceptions import TaxJarTypeError
+from taxjar.exceptions import TypeError
 
-class TaxJarTypeFactory:
+class TypeFactory(object):
     @staticmethod
     def build(data_type):
         classes_by_type = {
@@ -17,5 +17,5 @@ class TaxJarTypeFactory:
             'summary_rates': TaxJarSummaryRates
         }
         if data_type not in classes_by_type:
-            raise TaxJarTypeError("Unknown data type: " + data_type)
+            raise TypeError("Unknown data type: " + data_type)
         return classes_by_type[data_type]

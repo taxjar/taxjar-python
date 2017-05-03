@@ -1,4 +1,4 @@
-class TaxJarData:
+class TaxJarData(object):
     def __init__(self, values):
         self.handle_response(values)
 
