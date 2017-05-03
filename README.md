@@ -34,7 +34,9 @@ client.categories
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.categories
 ```
 
@@ -49,7 +51,9 @@ client.rates_for_location
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 rates = client.rates_for_location('90404-3370')
 
 # TODO - optional params not supported yet
@@ -71,7 +75,9 @@ client.tax_for_order
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.tax_for_order({
   'shipping': 0,
   'to_zip': 66085,
@@ -92,7 +98,9 @@ client.list_orders
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.list_orders({
   'from_transaction_date': '2016/01/01',
   'to_transaction_date': '2017/01/01'
@@ -110,7 +118,9 @@ client.show_order
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.show_order('123')
 ```
 
@@ -125,7 +135,8 @@ client.create_order
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.create_order({
   'transaction_id': tid,
@@ -164,7 +175,9 @@ client.update_order
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.update_order(tid, {
   'transaction_id': tid,
   'from_city': "Santo Barbara"
@@ -182,7 +195,9 @@ client.delete_order
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.delete_order('123')
 ```
 
@@ -197,7 +212,9 @@ client.list_refunds
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.list_refunds({
   'from_transaction_date': '2016/01/01',
   'to_transaction_date': '2017/01/01'
@@ -215,7 +232,9 @@ client.show_refund
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.show_refund('321')
 ```
 
@@ -230,7 +249,9 @@ client.create_refund
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.create_refund({
   'transaction_id': tid,
   'transaction_date': '2016-05-14',
@@ -269,7 +290,9 @@ client.update_refund
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.update_refund(tid, {
   'transaction_id': tid,
   'from_city': "Santo Barbara",
@@ -288,7 +311,9 @@ client.delete_refund
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.delete_refund('321')
 ```
 
@@ -303,7 +328,9 @@ client.nexus_regions
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 nexus_regions = client.nexus_regions
 ```
 
@@ -318,7 +345,9 @@ client.validate
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.validate({
   'vat': 'FR40303265045'
 })
@@ -336,11 +365,13 @@ client.summary_rates
 #### Example Request
 
 ```python
-client = TaxJarClient('your key here')
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
 client.summary_rates
 ```
 
-### Custom Options
+<!--### Custom Options
 
 #### TODO - not supported
 
@@ -348,11 +379,11 @@ Set request timeout in seconds:
 
 ```python
 client.tax_for_order({ timeout: 30 })
-```
+```-->
 
 ## Tests
 
-A unittest test suite is available to ensure API functionality:
+A `unittest` test suite is available to ensure API functionality:
 
 ```shell
 $ python -m unittest discover tests
