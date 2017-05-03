@@ -6,18 +6,18 @@ tests_dir = os.path.dirname(os.path.abspath(__file__))
 taxjar_dir = os.path.join(tests_dir, os.path.pardir)
 sys.path.append(taxjar_dir)
 
-from taxjar.client import TaxJarClient
-from taxjar.exceptions import TaxJarResponseError
+from taxjar.client import Client
+from taxjar.exceptions import ResponseError
 
 if __name__ == '__main__':
-    taxjar = TaxJarClient(os.environ['API_KEY'])
+    taxjar = Client(os.environ['API_KEY'])
     rate = taxjar.rates_for_location('90210')
     print(rate)
     cats = taxjar.categories()
     print(cats)
-    taxes = taxjar.tax_for_order({ 'shipping': 0, 'to_zip': 66085, 'to_state': 'KS', 'to_country': 'US', 'amount': 100.0 })
+    taxes = taxjar.tax_for_order({'shipping': 0, 'to_zip': 66085, 'to_state': 'KS', 'to_country': 'US', 'amount': 100.0})
     print(taxes)
-    orders = taxjar.list_orders({ 'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01' })
+    orders = taxjar.list_orders({'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01'})
     print(orders)
     order = taxjar.show_order('113-9883150-1814669')
     print(order)
@@ -32,7 +32,7 @@ if __name__ == '__main__':
     order = taxjar.delete_order(tid)
     print(order)
 
-    orders = taxjar.list_refunds({ 'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01' })
+    orders = taxjar.list_refunds({'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01'})
     print(orders)
 
     tid = str(int(time.time()))
