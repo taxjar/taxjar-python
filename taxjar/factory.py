@@ -8,6 +8,7 @@ from taxjar.data import (
     TaxJarValidation,
     TaxJarSummaryRates
 )
+from taxjar.exceptions import TaxJarTypeError
 
 class TaxJarTypeFactory(object):
     @staticmethod
@@ -25,5 +26,5 @@ class TaxJarTypeFactory(object):
             'summary_rates': TaxJarSummaryRates
         }
         if data_type not in classes_by_type:
-            raise TypeError("Unknown data type: " + data_type)
+            raise TaxJarTypeError("Unknown data type: " + data_type)
         return classes_by_type[data_type]

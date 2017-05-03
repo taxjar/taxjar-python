@@ -9,4 +9,4 @@ class TestTaxJarFactory(unittest.TestCase):
         self.assertEqual(klass.__name__, 'TaxJarOrder')
 
     def test_bad_key_is_raised(self):
-        self.assertRaises(TypeError, TaxJarTypeFactory.build, 'hi')
+        self.assertRaises(TaxJarTypeError, TaxJarTypeFactory.build, 'hi')
