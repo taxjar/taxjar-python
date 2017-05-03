@@ -397,7 +397,7 @@ Pass additional parameters when instantiating the client for the following optio
 
 #### Timeouts
 
-Set request timeout in seconds:
+Set request timeout in seconds (default is 5 seconds):
 
 ```python
 import taxjar
