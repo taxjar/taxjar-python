@@ -17,9 +17,9 @@ class Client(object):
         request = self._get('categories')
         return self.responder(request)
 
-    def rates_for_location(self, postal_code):
+    def rates_for_location(self, postal_code, location_deets=None):
         """Shows the sales tax rates for a given location."""
-        request = self._get("rates/" + postal_code)
+        request = self._get("rates/" + postal_code, location_deets)
         return self.responder(request)
 
     def tax_for_order(self, order_deets):
