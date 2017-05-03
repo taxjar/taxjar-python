@@ -1,11 +1,11 @@
-class Error(Exception):
+class TaxJarError(Exception):
     """Base class for TaxJar-related errors"""
 
-class ResponseError(Error):
+class TaxJarResponseError(TaxJarError):
     """Response errors (400, 500)"""
 
-class ConnectionError(Error):
+class TaxJarConnectionError(TaxJarError):
     """Connection errors"""
 
-class TypeError(Error):
+class TaxJarTypeError(TaxJarError):
     """Factory errors"""

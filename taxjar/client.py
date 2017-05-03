@@ -1,11 +1,11 @@
 import requests
 import taxjar
-from taxjar.response import Response
-from taxjar.exceptions import ConnectionError
+from taxjar.response import TaxJarResponse
+from taxjar.exceptions import TaxJarConnectionError
 
 class Client(object):
     """TaxJar Python Client"""
-    def __init__(self, api_key, options=None, responder=Response.from_request):
+    def __init__(self, api_key, options=None, responder=TaxJarResponse.from_request):
         if options is None:
             options = {}
         self.api_key = api_key
@@ -113,9 +113,9 @@ class Client(object):
             data['timeout'] = self.timeout
             return method(self._uri(endpoint), headers=self._headers(), **data)
         except requests.Timeout as err:
-            raise ConnectionError(err)
+            raise TaxJarConnectionError(err)
         except requests.ConnectionError as err:
-            raise ConnectionError(err)
+            raise TaxJarConnectionError(err)
 
     def _uri(self, endpoint):
         return taxjar.API_URL + endpoint

@@ -1,7 +1,7 @@
 from taxjar.data import *
-from taxjar.exceptions import TypeError
+from taxjar.exceptions import TaxJarTypeError
 
-class TypeFactory(object):
+class TaxJarTypeFactory(object):
     @staticmethod
     def build(data_type):
         classes_by_type = {

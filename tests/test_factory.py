@@ -1,12 +1,12 @@
 import unittest
 from mock import MagicMock, patch
-from taxjar.factory import TypeFactory
-from taxjar.exceptions import TypeError
+from taxjar.factory import TaxJarTypeFactory
+from taxjar.exceptions import TaxJarTypeError
 
 class TestTaxJarFactory(unittest.TestCase):
     def test_key_translation(self):
-        klass = TypeFactory.build('order')
+        klass = TaxJarTypeFactory.build('order')
         self.assertEqual(klass.__name__, 'TaxJarOrder')
 
     def test_bad_key_is_raised(self):
-        self.assertRaises(TypeError, TypeFactory.build, 'hi')
+        self.assertRaises(TypeError, TaxJarTypeFactory.build, 'hi')
