@@ -1,25 +1,34 @@
-# TaxJar Sales Tax API for Python 3
+# TaxJar Sales Tax API for Python
 
-A client for interacting with SmartCalcs by TaxJar.
+A sales tax API client for interacting with SmartCalcs by TaxJar.
 
 * This wrapper supports 100% of the [TaxJar API Version 2](http://developers.taxjar.com/api/#introduction)
-* Data returned from API calls are mapped into Python objects
+* Data returned from API calls are mapped to Python objects
 
 ## Supported Python Versions
 
 Python 2.6+ or Python 3+
 
-## Installation
+## Package Dependencies
 
-FIXME
+TaxJar uses the [Requests](https://github.com/kennethreitz/requests) HTTP library for making RESTful requests to SmartCalcs.
+
+## Getting Started
+
+We recommend installing TaxJar via [PyPI](https://pypi.python.org/pypi) using [pip](https://github.com/pypa/pip). Before authenticating, [get your API key from TaxJar](https://app.taxjar.com/api_sign_up/plus/). Run the following command in your terminal:
 
 ```shell
 pip install taxjar
 ```
 
-## Quick Start Guide
+## Authentication
 
-First, [get an API key from TaxJar](https://app.taxjar.com/api_sign_up/plus/).
+To authenticate with our API, import the `taxjar` package and instantiate a new API client:
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+```
 
 ## Usage
 
