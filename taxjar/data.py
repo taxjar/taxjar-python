@@ -33,6 +33,9 @@ class TaxJarIterable():
         self.current += 1
         return result
 
+    def __repr__(self):
+        return str(self.data)
+
 class TaxJarCategory(TaxJarData):
     pass
 
