@@ -7,7 +7,7 @@ taxjar_dir = os.path.join(tests_dir, os.path.pardir)
 sys.path.append(taxjar_dir)
 
 from taxjar.client import Client
-from taxjar.exceptions import ResponseError
+from taxjar.exceptions import TaxJarResponseError
 
 if __name__ == '__main__':
     taxjar = Client(os.environ['API_KEY'])
@@ -19,11 +19,12 @@ if __name__ == '__main__':
     print(taxes)
     orders = taxjar.list_orders({'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01'})
     print(orders)
-    order = taxjar.show_order('113-9883150-1814669')
-    print(order)
 
     tid = str(int(time.time()))
     order = taxjar.create_order({'transaction_id': tid, 'transaction_date': '2016-05-14', 'from_state': 'CA', 'from_city': 'Santa Barbara', 'from_street': '1218 State St','from_country': 'US','from_zip': '93101','to_country': 'US','to_state': 'CA','to_city': 'Los Angeles','to_street': '123 Palm Grove Ln','to_zip': '90002','amount': 16.5,'shipping': 1.5,'sales_tax': 0.95, 'line_items': [{'quantity': 1, 'product_identifier': '12-34243-9', 'description': 'Fuzzy Widget', 'unit_price': 15, 'sales_tax': 0.95}]})
+    print(order)
+
+    order = taxjar.show_order(tid)
     print(order)
 
     order = taxjar.update_order(tid, {'transaction_id': tid, 'from_city': "Santo Barbara"})
@@ -42,7 +43,7 @@ if __name__ == '__main__':
     order = taxjar.show_refund(tid)
     print(order)
 
-    order = taxjar.update_refund(tid, {'transaction_id': tid, 'from_city': "Santo Barbara", 'amount': 16.5})
+    order = taxjar.update_refund(tid, {'transaction_id': tid, 'from_city': "Santo Barbara", 'amount': 16.5, 'shipping': 2.1, 'sales_tax': 1.1})
     print(order)
 
     order = taxjar.delete_refund(tid)
