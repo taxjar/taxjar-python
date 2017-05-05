@@ -49,6 +49,28 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 client.categories()
 ```
 
+#### Example Response
+
+```python
+[
+  <TaxJarCategory {
+    'product_tax_code': '31000',
+    'name': 'Digital Goods',
+    'description': 'Digital products transferred electronically, meaning obtained by the purchaser by means other than tangible storage media.'
+  }>,
+  <TaxJarCategory {
+    'product_tax_code': '20010',
+    'name': 'Clothing',
+    'description': ' All human wearing apparel suitable for general use'
+  }>,
+  <TaxJarCategory {
+    'product_tax_code': '51010',
+    'name': 'Non-Prescription',
+    'description': 'Drugs for human use without a prescription'
+  }>
+]
+```
+
 ### List tax rates for a location (by zip/postal code)
 
 #### Definition
@@ -84,6 +106,23 @@ rates = client.rates_for_location('00150', {
 })
 ```
 
+#### Example Response
+
+```python
+<TaxJarRate {
+  'city': 'SANTA MONICA',
+  'zip': '90404',
+  'combined_district_rate': '0.025',
+  'state_rate': '0.0625',
+  'city_rate': '0.0',
+  'county': 'LOS ANGELES',
+  'state': 'CA',
+  'combined_rate': '0.0975',
+  'county_rate': '0.01',
+  'freight_taxable': False
+}>
+```
+
 ### Calculate sales tax for an order
 
 #### Definition
@@ -99,12 +138,78 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.tax_for_order({
-  'shipping': 0,
-  'to_zip': 66085,
-  'to_state': 'KS',
   'to_country': 'US',
-  'amount': 100.0
+  'to_zip': '90002',
+  'to_city': 'Los Angeles',
+  'to_state': 'CA',
+  'from_country': 'US',
+  'from_zip': '92093',
+  'from_city': 'San Diego',
+  'amount': 15,
+  'shipping': 1.5,
+  'nexus_addresses': [
+    'country': 'US',
+    'zip': '93101',
+    'state': 'CA',
+    'city': 'Santa Barbara',
+    'street': '1218 State St.'
+  ],
+  'line_items': [
+    'quantity': 1,
+    'unit_price': 15,
+    'product_tax_code': 20010
+  ]
 })
+```
+
+#### Example Response
+
+```python
+<TaxJarTax {
+  'breakdown': {
+    'special_district_taxable_amount': 15.0,
+    'city_tax_rate': 0.0,
+    'county_tax_collectable': 0.15,
+    'county_taxable_amount': 15.0,
+    'special_district_tax_collectable': 0.23,
+    'line_items': [{
+      'special_district_taxable_amount': 15.0,
+      'city_tax_rate': 0.0,
+      'county_taxable_amount': 15.0,
+      'special_district_amount': 0.23,
+      'state_sales_tax_rate': 0.0625,
+      'state_amount': 0.94,
+      'city_taxable_amount': 0.0,
+      'taxable_amount': 15.0,
+      'special_tax_rate': 0.015,
+      'state_taxable_amount': 15.0,
+      'combined_tax_rate': 0.0875,
+      'county_tax_rate': 0.01,
+      'city_amount': 0.0,
+      'county_amount': 0.15,
+      'id': '1',
+      'tax_collectable': 1.31
+    }],
+    'taxable_amount': 15.0,
+    'state_taxable_amount': 15.0,
+    'combined_tax_rate': 0.0875,
+    'state_tax_collectable': 0.94,
+    'state_tax_rate': 0.0625,
+    'city_tax_collectable': 0.0,
+    'county_tax_rate': 0.01,
+    'special_tax_rate': 0.015,
+    'city_taxable_amount': 0.0,
+    'tax_collectable': 1.31
+  },
+  'has_nexus': True,
+  'tax_source': 'destination',
+  'shipping': 1.5,
+  'taxable_amount': 15.0,
+  'rate': 0.0875,
+  'freight_taxable': False,
+  'amount_to_collect': 1.31,
+  'order_total_amount': 16.5
+}>
 ```
 
 ### List order transactions
@@ -127,6 +232,12 @@ client.list_orders({
 })
 ```
 
+#### Example Response
+
+```python
+['20', '21', '22']
+```
+
 ### Show order transaction
 
 #### Definition
@@ -144,6 +255,40 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 client.show_order('123')
 ```
 
+#### Example Response
+
+```python
+<TaxJarOrder {
+  'from_state': None,
+  'line_items': [{
+    'description': 'Fuzzy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-9',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': None,
+  'from_city': None,
+  'from_zip': None,
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': None,
+  'sales_tax': '0.95',
+  'amount': '17.45',
+  'transaction_id': '12345',
+  'to_state': 'CA'
+}>
+```
+
 ### Create order transaction
 
 #### Definition
@@ -159,8 +304,8 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.create_order({
-  'transaction_id': tid,
-  'transaction_date': '2016-05-14',
+  'transaction_id': '123',
+  'transaction_date': '2015/05/14',
   'from_state': 'CA',
   'from_city': 'Santa Barbara',
   'from_street': '1218 State St', 
@@ -182,6 +327,40 @@ client.create_order({
     'sales_tax': 0.95
   }]
 })
+```
+
+#### Example Response
+
+```python
+<TaxJarOrder {
+  'from_state': None,
+  'line_items': [{
+    'description': 'Fuzzy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-9',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': '93101',
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': None,
+  'sales_tax': '0.95',
+  'amount': '17.45',
+  'transaction_id': '123',
+  'to_state': 'CA'
+}>
 ```
 
 ### Update order transaction
