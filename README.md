@@ -406,10 +406,9 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78', options={'tim
 
 ## Tests
 
-A `unittest` test suite is available to ensure API functionality. It requires installing the `mock` library.
+A `unittest` test suite is available to ensure API functionality:
 
 ```shell
-$ pip install mock
 $ python -m unittest discover tests
 ```
 
