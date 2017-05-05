@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import MagicMock, patch
 from taxjar.factory import TaxJarTypeFactory
 from taxjar.exceptions import TaxJarTypeError
 

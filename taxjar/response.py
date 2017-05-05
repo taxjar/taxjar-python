@@ -1,7 +1,7 @@
 from taxjar.factory import TaxJarTypeFactory
 from taxjar.exceptions import TaxJarResponseError
 
-class TaxJarResponse:
+class TaxJarResponse(object):
     @staticmethod
     def from_request(request):
         return TaxJarResponse().data_from_request(request)
@@ -14,10 +14,11 @@ class TaxJarResponse:
         else:
             self.raise_response_error(response)
 
-    def raise_response_error(self, response):
+    @staticmethod
+    def raise_response_error(response):
         status = response['status']
         error = response['error']
         detail = response['detail']
         error = TaxJarResponseError(str(status) + " " + error)
-        error.full_response = { 'response': response, 'status_code': status, 'detail': detail }
+        error.full_response = {'response': response, 'status_code': status, 'detail': detail}
         raise error

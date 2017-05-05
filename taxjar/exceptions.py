@@ -5,7 +5,7 @@ class TaxJarResponseError(TaxJarError):
     """Response errors (400, 500)"""
 
 class TaxJarConnectionError(TaxJarError):
-    """Connection errrors"""
+    """Connection errors"""
 
 class TaxJarTypeError(TaxJarError):
     """Factory errors"""

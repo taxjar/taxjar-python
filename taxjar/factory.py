@@ -1,7 +1,16 @@
-from taxjar.data import *
+from taxjar.data import (
+    TaxJarRate,
+    TaxJarCategories,
+    TaxJarTax,
+    TaxJarOrder,
+    TaxJarOrders,
+    TaxJarRegions,
+    TaxJarValidation,
+    TaxJarSummaryRates
+)
 from taxjar.exceptions import TaxJarTypeError
 
-class TaxJarTypeFactory:
+class TaxJarTypeFactory(object):
     @staticmethod
     def build(data_type):
         classes_by_type = {
