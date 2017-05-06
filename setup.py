@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='taxjar',
-    version='0.0.1',
+    version='1.0.0',
     description='Sales tax API client for Python',
     author='TaxJar',
     author_email='support@taxjar.com',
