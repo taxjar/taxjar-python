@@ -272,9 +272,9 @@ client.show_order('123')
   }],
   'user_id': 1,
   'to_zip': '90002',
-  'from_street': None,
-  'from_city': None,
-  'from_zip': None,
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': 93107,
   'to_country': 'US',
   'shipping': '1.5',
   'from_country': 'US',
@@ -284,7 +284,7 @@ client.show_order('123')
   'transaction_reference_id': None,
   'sales_tax': '0.95',
   'amount': '17.45',
-  'transaction_id': '12345',
+  'transaction_id': '123',
   'to_state': 'CA'
 }>
 ```
@@ -333,7 +333,7 @@ client.create_order({
 
 ```python
 <TaxJarOrder {
-  'from_state': None,
+  'from_state': 'CA',
   'line_items': [{
     'description': 'Fuzzy Widget',
     'unit_price': '15.0',
@@ -377,10 +377,52 @@ client.update_order
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.update_order(tid, {
-  'transaction_id': tid,
-  'from_city': "Santo Barbara"
+client.update_order('123', {
+  'transaction_id': '123',
+  'amount': 17,
+  'shipping': 2,
+  'line_items': [{
+    'quantity': 1,
+    'product_identifier': '12-34243-0',
+    'description': 'Heavy Widget',
+    'unit_price': 15,
+    'sales_tax': 0.95
+  }] 
 })
+```
+
+#### Example Response
+
+```python
+<TaxJarOrder {
+  'from_state': None,
+  'line_items': [{
+    'description': 'Heavy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-0',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': '93101',
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': None,
+  'sales_tax': '0.95',
+  'amount': '17.95',
+  'transaction_id': '123',
+  'to_state': 'CA'
+}>
 ```
 
 ### Delete order transaction
@@ -398,6 +440,31 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.delete_order('123')
+```
+
+#### Example Response
+
+```python
+<TaxJarOrder {
+  'from_state': None,
+  'line_items': [],
+  'user_id': 1,
+  'to_zip': None,
+  'from_street': None,
+  'from_city': None,
+  'from_zip': None,
+  'to_country': None,
+  'shipping': None,
+  'from_country': None,
+  'to_city': None,
+  'to_street': None,
+  'transaction_date': None,
+  'transaction_reference_id': None,
+  'sales_tax': None,
+  'amount': None,
+  'transaction_id': '123',
+  'to_state': None
+}>
 ```
 
 ### Listing refund transactions
@@ -420,6 +487,12 @@ client.list_refunds({
 })
 ```
 
+#### Example Response
+
+```python
+['203', '204', '205']
+```
+
 ### Show refund transaction
 
 #### Definition
@@ -437,6 +510,40 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 client.show_refund('321')
 ```
 
+#### Example Response
+
+```python
+<TaxJarRefund {
+  'from_state': 'CA',
+  'line_items': [{
+    'description': 'Heavy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-0',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': 93107,
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': '123',
+  'sales_tax': '0.95',
+  'amount': '17.45',
+  'transaction_id': '321',
+  'to_state': 'CA'
+}>
+```
+
 ### Create refund transaction
 
 #### Definition
@@ -452,9 +559,9 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.create_refund({
-  'transaction_id': tid,
+  'transaction_id': '321',
   'transaction_date': '2016-05-14',
-  'transaction_reference_id': tid,
+  'transaction_reference_id': '123',
   'from_state': 'CA',
   'from_city': 'Santa Barbara',
   'from_street': '1218 State St',
@@ -478,6 +585,40 @@ client.create_refund({
 })
 ```
 
+#### Example Response
+
+```python
+<TaxJarRefund {
+  'from_state': 'CA',
+  'line_items': [{
+    'description': 'Fuzzy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-9',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': 93107,
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': '123',
+  'sales_tax': '0.95',
+  'amount': '17.45',
+  'transaction_id': '321',
+  'to_state': 'CA'
+}>
+```
+
 ### Update refund transaction
 
 #### Definition
@@ -492,11 +633,53 @@ client.update_refund
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.update_refund(tid, {
-  'transaction_id': tid,
-  'from_city': "Santo Barbara",
-  'amount': 16.5
+client.update_refund('321', {
+  'transaction_id': '321',
+  'amount': 17,
+  'shipping': 2,
+  'sales_tax': 0.95,
+  'line_items': [{
+    'quantity': 1,
+    'product_identifier': '12-34243-0',
+    'description': 'Heavy Widget',
+    'unit_price': 15,
+    'sales_tax': 0.95
+  }] 
 })
+```
+
+#### Example Response
+
+```python
+<TaxJarRefund {
+  'from_state': 'CA',
+  'line_items': [{
+    'description': 'Heavy Widget',
+    'unit_price': '15.0',
+    'discount': '0.0',
+    'product_identifier': '12-34243-0',
+    'sales_tax': '0.95',
+    'product_tax_code': None,
+    'id': 0,
+    'quantity': 1
+  }],
+  'user_id': 1,
+  'to_zip': '90002',
+  'from_street': '1218 State St',
+  'from_city': 'SANTA BARBARA',
+  'from_zip': 93107,
+  'to_country': 'US',
+  'shipping': '1.5',
+  'from_country': 'US',
+  'to_city': 'LOS ANGELES',
+  'to_street': '123 Palm Grove Ln',
+  'transaction_date': '2016-03-10T00:00:00.000Z',
+  'transaction_reference_id': '123',
+  'sales_tax': '0.95',
+  'amount': '17.95',
+  'transaction_id': '321',
+  'to_state': 'CA'
+}>
 ```
 
 ### Delete refund transaction
@@ -516,6 +699,31 @@ client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 client.delete_refund('321')
 ```
 
+#### Example Response
+
+```python
+<TaxJarRefund {
+  'from_state': None,
+  'line_items': [],
+  'user_id': 1,
+  'to_zip': None,
+  'from_street': None,
+  'from_city': None,
+  'from_zip': None,
+  'to_country': None,
+  'shipping': None,
+  'from_country': None,
+  'to_city': None,
+  'to_street': None,
+  'transaction_date': None,
+  'transaction_reference_id': None,
+  'sales_tax': None,
+  'amount': None,
+  'transaction_id': '321',
+  'to_state': None
+}>
+```
+
 ### List nexus regions
 
 #### Definition
@@ -531,6 +739,31 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 nexus_regions = client.nexus_regions()
+```
+
+#### Example Response
+
+```python
+[
+  <TaxJarRegion {
+    'country_code': 'US',
+    'country': 'United States',
+    'region_code': 'CA',
+    'region': 'California'
+  }>,
+  <TaxJarRegion {
+    'country_code': 'US',
+    'country': 'United States',
+    'region_code': 'NY',
+    'region': 'New York'
+  }>,
+  <TaxJarRegion {
+    'country_code': 'US',
+    'country': 'United States',
+    'region_code': 'WA',
+    'region': 'Washington'
+  }>
+]
 ```
 
 ### Validate a VAT number
@@ -552,6 +785,24 @@ client.validate({
 })
 ```
 
+#### Example Response
+
+```python
+<TaxjarValidation {
+  'valid': True,
+  'exists': True,
+  'vies_available': True,
+  'vies_response': {
+    'country_code': 'FR',
+    'vat_number': '40303265045',
+    'request_date': '2016-02-10',
+    'valid': True,
+    'name': 'SA SODIMAS',
+    'address': "11 RUE AMPERE\n26600 PONT DE L ISERE"
+  }
+}>
+```
+
 
 ### Summarize tax rates for all regions
 
@@ -568,6 +819,55 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.summary_rates()
+```
+
+#### Example Response
+
+```python
+[
+  <TaxJarSummaryRate {
+    'average_rate': {
+      'rate': 0.0827,
+      'label': 'Tax'
+    },
+    'region_code': 'CA',
+    'minimum_rate': {
+      'rate': 0.065,
+      'label': 'State Tax'
+    },
+    'country': 'US',
+    'region': 'California',
+    'country_code': 'US'
+  }>,
+  <TaxJarSummaryRate {
+    'average_rate': {
+      'rate': 0.12,
+      'label': 'PST'
+    },
+    'region_code': 'BC',
+    'minimum_rate': {
+      'rate': 0.05,
+      'label': 'GST'
+    },
+    'country': 'Canada',
+    'region': 'British Columbia',
+    'country_code': 'CA'
+  }>,
+  <TaxJarSummaryRate {
+    'average_rate': {
+      'rate': 0.2,
+      'label': 'VAT'
+    },
+    'region_code': None,
+    'minimum_rate': {
+      'rate': 0.2,
+      'label': 'VAT'
+    },
+    'country': 'United Kingdom',
+    'region': None,
+    'country_code': 'UK'
+  }>
+]
 ```
 
 ### Custom Options
