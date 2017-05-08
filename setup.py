@@ -7,6 +7,7 @@ setup(
     author='TaxJar',
     author_email='support@taxjar.com',
     url='https://github.com/taxjar/taxjar-python',
+    download_url='https://github.com/taxjar/taxjar-python/archive/v1.0.0.zip',
     packages=['taxjar'],
     install_requires=[
         'requests >= 2.13.0'
