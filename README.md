@@ -147,18 +147,18 @@ client.tax_for_order({
   'from_city': 'San Diego',
   'amount': 15,
   'shipping': 1.5,
-  'nexus_addresses': [
+  'nexus_addresses': [{
     'country': 'US',
     'zip': '93101',
     'state': 'CA',
     'city': 'Santa Barbara',
     'street': '1218 State St.'
-  ],
-  'line_items': [
+  }],
+  'line_items': [{
     'quantity': 1,
     'unit_price': 15,
     'product_tax_code': 20010
-  ]
+  }]
 })
 ```
 
