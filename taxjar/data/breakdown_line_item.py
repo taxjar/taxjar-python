@@ -1,4 +1,4 @@
-from jsonobject import JsonObject, StringProperty
+from jsonobject import JsonObject
 from taxjar.data.float_property import TaxJarFloatProperty
 
 class TaxJarBreakdownLineItem(JsonObject):

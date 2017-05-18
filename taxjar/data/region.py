@@ -11,4 +11,3 @@ class TaxJarRegions(TaxJarIterable):
     def handle_response(self, response):
         self.data = [TaxJarRegion(r) for r in response]
         return self
-

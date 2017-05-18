@@ -1,4 +1,4 @@
-class TaxJarIterable():
+class TaxJarIterable(object):
     def __init__(self, values):
         self.current = 0
         self.handle_response(values)

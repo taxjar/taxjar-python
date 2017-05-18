@@ -1,8 +1,8 @@
 from taxjar.data.rate import TaxJarRate
-from taxjar.data.category import TaxJarCategories, TaxJarCategory
+from taxjar.data.category import TaxJarCategories
 from taxjar.data.tax import TaxJarTax
 from taxjar.data.order import TaxJarOrder, TaxJarOrders
-from taxjar.data.region import TaxJarRegion, TaxJarRegions
+from taxjar.data.region import TaxJarRegions
 from taxjar.data.validation import TaxJarValidation
 from taxjar.data.summary_rate import TaxJarSummaryRates
 from taxjar.exceptions import TaxJarTypeError
