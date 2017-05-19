@@ -166,13 +166,13 @@ client.tax_for_order({
 
 ```python
 <TaxJarTax {
-  'breakdown': {
+  'breakdown': <TaxJarBreakdown {
     'special_district_taxable_amount': 15.0,
     'city_tax_rate': 0.0,
     'county_tax_collectable': 0.15,
     'county_taxable_amount': 15.0,
     'special_district_tax_collectable': 0.23,
-    'line_items': [{
+    'line_items': [<TaxJarBreakdownLineItem {
       'special_district_taxable_amount': 15.0,
       'city_tax_rate': 0.0,
       'county_taxable_amount': 15.0,
@@ -189,7 +189,7 @@ client.tax_for_order({
       'county_amount': 0.15,
       'id': '1',
       'tax_collectable': 1.31
-    }],
+    }>],
     'taxable_amount': 15.0,
     'state_taxable_amount': 15.0,
     'combined_tax_rate': 0.0875,
@@ -200,7 +200,7 @@ client.tax_for_order({
     'special_tax_rate': 0.015,
     'city_taxable_amount': 0.0,
     'tax_collectable': 1.31
-  },
+  }>,
   'has_nexus': True,
   'tax_source': 'destination',
   'shipping': 1.5,
@@ -260,7 +260,7 @@ client.show_order('123')
 ```python
 <TaxJarOrder {
   'from_state': None,
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -269,7 +269,7 @@ client.show_order('123')
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -334,7 +334,7 @@ client.create_order({
 ```python
 <TaxJarOrder {
   'from_state': 'CA',
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -343,7 +343,7 @@ client.create_order({
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -396,7 +396,7 @@ client.update_order('123', {
 ```python
 <TaxJarOrder {
   'from_state': None,
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -405,7 +405,7 @@ client.update_order('123', {
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -515,7 +515,7 @@ client.show_refund('321')
 ```python
 <TaxJarRefund {
   'from_state': 'CA',
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -524,7 +524,7 @@ client.show_refund('321')
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -590,7 +590,7 @@ client.create_refund({
 ```python
 <TaxJarRefund {
   'from_state': 'CA',
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -599,7 +599,7 @@ client.create_refund({
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -653,7 +653,7 @@ client.update_refund('321', {
 ```python
 <TaxJarRefund {
   'from_state': 'CA',
-  'line_items': [{
+  'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
     'unit_price': '15.0',
     'discount': '0.0',
@@ -662,7 +662,7 @@ client.update_refund('321', {
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
-  }],
+  }>],
   'user_id': 1,
   'to_zip': '90002',
   'from_street': '1218 State St',
@@ -792,14 +792,14 @@ client.validate({
   'valid': True,
   'exists': True,
   'vies_available': True,
-  'vies_response': {
+  'vies_response': <TaxJarViesResponse {
     'country_code': 'FR',
     'vat_number': '40303265045',
     'request_date': '2016-02-10',
     'valid': True,
     'name': 'SA SODIMAS',
     'address': "11 RUE AMPERE\n26600 PONT DE L ISERE"
-  }
+  }>
 }>
 ```
 
@@ -826,43 +826,43 @@ client.summary_rates()
 ```python
 [
   <TaxJarSummaryRate {
-    'average_rate': {
+    'average_rate': <TaxJarAverageRate {
       'rate': 0.0827,
       'label': 'Tax'
-    },
+    }>,
     'region_code': 'CA',
-    'minimum_rate': {
+    'minimum_rate': <TaxJarMinimumRate {
       'rate': 0.065,
       'label': 'State Tax'
-    },
+    }>,
     'country': 'US',
     'region': 'California',
     'country_code': 'US'
   }>,
   <TaxJarSummaryRate {
-    'average_rate': {
+    'average_rate': <TaxJarAverageRate {
       'rate': 0.12,
       'label': 'PST'
-    },
+    }>,
     'region_code': 'BC',
-    'minimum_rate': {
+    'minimum_rate': <TaxJarMinimumRate {
       'rate': 0.05,
       'label': 'GST'
-    },
+    }>,
     'country': 'Canada',
     'region': 'British Columbia',
     'country_code': 'CA'
   }>,
   <TaxJarSummaryRate {
-    'average_rate': {
+    'average_rate': <TaxJarAverageRate {
       'rate': 0.2,
       'label': 'VAT'
-    },
+    }>,
     'region_code': None,
-    'minimum_rate': {
+    'minimum_rate': <TaxJarMinimumRate {
       'rate': 0.2,
       'label': 'VAT'
-    },
+    }>,
     'country': 'United Kingdom',
     'region': None,
     'country_code': 'UK'
