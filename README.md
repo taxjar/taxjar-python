@@ -11,7 +11,10 @@ Python 2.6+ or Python 3+
 
 ## Package Dependencies
 
-TaxJar uses the [Requests](https://github.com/kennethreitz/requests) HTTP library for making RESTful requests to SmartCalcs.
+TaxJar uses the following dependencies as specified in `setup.py`:
+
+- [Requests](https://github.com/kennethreitz/requests) HTTP library for making RESTful requests to SmartCalcs.
+- [jsonobject](https://github.com/dimagi/jsonobject) Simple JSON object mapping for Python.
 
 ## Getting Started
 
