@@ -788,7 +788,7 @@ client.validate({
 #### Example Response
 
 ```python
-<TaxjarValidation {
+<TaxJarValidation {
   'valid': True,
   'exists': True,
   'vies_available': True,
@@ -802,7 +802,6 @@ client.validate({
   }>
 }>
 ```
-
 
 ### Summarize tax rates for all regions
 
