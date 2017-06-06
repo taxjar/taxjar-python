@@ -9,6 +9,7 @@ class TaxJarRate(JsonObject):
     country = StringProperty()
     name = StringProperty()
 
+    country_rate = TaxJarFloatProperty()
     state_rate = TaxJarFloatProperty()
     county_rate = TaxJarFloatProperty()
     city_rate = TaxJarFloatProperty()
