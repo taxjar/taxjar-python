@@ -115,13 +115,13 @@ rates = client.rates_for_location('00150', {
 <TaxJarRate {
   'city': 'SANTA MONICA',
   'zip': '90404',
-  'combined_district_rate': '0.025',
-  'state_rate': '0.0625',
-  'city_rate': '0.0',
+  'combined_district_rate': 0.025,
+  'state_rate': 0.0625,
+  'city_rate': 0,
   'county': 'LOS ANGELES',
   'state': 'CA',
-  'combined_rate': '0.0975',
-  'county_rate': '0.01',
+  'combined_rate': 0.0975,
+  'county_rate': 0.01,
   'freight_taxable': False
 }>
 ```
@@ -170,44 +170,44 @@ client.tax_for_order({
 ```python
 <TaxJarTax {
   'breakdown': <TaxJarBreakdown {
-    'special_district_taxable_amount': 15.0,
-    'city_tax_rate': 0.0,
+    'special_district_taxable_amount': 15,
+    'city_tax_rate': 0,
     'county_tax_collectable': 0.15,
-    'county_taxable_amount': 15.0,
+    'county_taxable_amount': 15,
     'special_district_tax_collectable': 0.23,
     'line_items': [<TaxJarBreakdownLineItem {
-      'special_district_taxable_amount': 15.0,
-      'city_tax_rate': 0.0,
-      'county_taxable_amount': 15.0,
+      'special_district_taxable_amount': 15,
+      'city_tax_rate': 0,
+      'county_taxable_amount': 15,
       'special_district_amount': 0.23,
       'state_sales_tax_rate': 0.0625,
       'state_amount': 0.94,
-      'city_taxable_amount': 0.0,
-      'taxable_amount': 15.0,
+      'city_taxable_amount': 0,
+      'taxable_amount': 15,
       'special_tax_rate': 0.015,
-      'state_taxable_amount': 15.0,
+      'state_taxable_amount': 15,
       'combined_tax_rate': 0.0875,
       'county_tax_rate': 0.01,
-      'city_amount': 0.0,
+      'city_amount': 0,
       'county_amount': 0.15,
       'id': '1',
       'tax_collectable': 1.31
     }>],
-    'taxable_amount': 15.0,
-    'state_taxable_amount': 15.0,
+    'taxable_amount': 15,
+    'state_taxable_amount': 15,
     'combined_tax_rate': 0.0875,
     'state_tax_collectable': 0.94,
     'state_tax_rate': 0.0625,
-    'city_tax_collectable': 0.0,
+    'city_tax_collectable': 0,
     'county_tax_rate': 0.01,
     'special_tax_rate': 0.015,
-    'city_taxable_amount': 0.0,
+    'city_taxable_amount': 0,
     'tax_collectable': 1.31
   }>,
   'has_nexus': True,
   'tax_source': 'destination',
   'shipping': 1.5,
-  'taxable_amount': 15.0,
+  'taxable_amount': 15,
   'rate': 0.0875,
   'freight_taxable': False,
   'amount_to_collect': 1.31,
@@ -265,10 +265,10 @@ client.show_order('123')
   'from_state': None,
   'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-9',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -279,14 +279,14 @@ client.show_order('123')
   'from_city': 'SANTA BARBARA',
   'from_zip': 93107,
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': None,
-  'sales_tax': '0.95',
-  'amount': '17.45',
+  'sales_tax': 0.95,
+  'amount': 17.45,
   'transaction_id': '123',
   'to_state': 'CA'
 }>
@@ -311,7 +311,7 @@ client.create_order({
   'transaction_date': '2015/05/14',
   'from_state': 'CA',
   'from_city': 'Santa Barbara',
-  'from_street': '1218 State St', 
+  'from_street': '1218 State St',
   'from_country': 'US',
   'from_zip': '93101',
   'to_country': 'US',
@@ -339,10 +339,10 @@ client.create_order({
   'from_state': 'CA',
   'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-9',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -353,14 +353,14 @@ client.create_order({
   'from_city': 'SANTA BARBARA',
   'from_zip': '93101',
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': None,
-  'sales_tax': '0.95',
-  'amount': '17.45',
+  'sales_tax': 0.95,
+  'amount': 17.45,
   'transaction_id': '123',
   'to_state': 'CA'
 }>
@@ -390,7 +390,7 @@ client.update_order('123', {
     'description': 'Heavy Widget',
     'unit_price': 15,
     'sales_tax': 0.95
-  }] 
+  }]
 })
 ```
 
@@ -401,10 +401,10 @@ client.update_order('123', {
   'from_state': None,
   'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-0',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -415,14 +415,14 @@ client.update_order('123', {
   'from_city': 'SANTA BARBARA',
   'from_zip': '93101',
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': None,
-  'sales_tax': '0.95',
-  'amount': '17.95',
+  'sales_tax': 0.95,
+  'amount': 17.95,
   'transaction_id': '123',
   'to_state': 'CA'
 }>
@@ -520,10 +520,10 @@ client.show_refund('321')
   'from_state': 'CA',
   'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-0',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -534,14 +534,14 @@ client.show_refund('321')
   'from_city': 'SANTA BARBARA',
   'from_zip': 93107,
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': '123',
-  'sales_tax': '0.95',
-  'amount': '17.45',
+  'sales_tax': 0.95,
+  'amount': 17.45,
   'transaction_id': '321',
   'to_state': 'CA'
 }>
@@ -595,10 +595,10 @@ client.create_refund({
   'from_state': 'CA',
   'line_items': [<TaxJarLineItem {
     'description': 'Fuzzy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-9',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -609,14 +609,14 @@ client.create_refund({
   'from_city': 'SANTA BARBARA',
   'from_zip': 93107,
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': '123',
-  'sales_tax': '0.95',
-  'amount': '17.45',
+  'sales_tax': 0.95,
+  'amount': 17.45,
   'transaction_id': '321',
   'to_state': 'CA'
 }>
@@ -647,7 +647,7 @@ client.update_refund('321', {
     'description': 'Heavy Widget',
     'unit_price': 15,
     'sales_tax': 0.95
-  }] 
+  }]
 })
 ```
 
@@ -658,10 +658,10 @@ client.update_refund('321', {
   'from_state': 'CA',
   'line_items': [<TaxJarLineItem {
     'description': 'Heavy Widget',
-    'unit_price': '15.0',
-    'discount': '0.0',
+    'unit_price': 15,
+    'discount': 0,
     'product_identifier': '12-34243-0',
-    'sales_tax': '0.95',
+    'sales_tax': 0.95,
     'product_tax_code': None,
     'id': 0,
     'quantity': 1
@@ -672,14 +672,14 @@ client.update_refund('321', {
   'from_city': 'SANTA BARBARA',
   'from_zip': 93107,
   'to_country': 'US',
-  'shipping': '1.5',
+  'shipping': 1.5,
   'from_country': 'US',
   'to_city': 'LOS ANGELES',
   'to_street': '123 Palm Grove Ln',
   'transaction_date': '2016-03-10T00:00:00.000Z',
   'transaction_reference_id': '123',
-  'sales_tax': '0.95',
-  'amount': '17.95',
+  'sales_tax': 0.95,
+  'amount': 17.95,
   'transaction_id': '321',
   'to_state': 'CA'
 }>
