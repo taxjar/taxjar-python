@@ -7,7 +7,7 @@ class TestClient(unittest.TestCase):
     def setUp(self):
         self.api_key = 'heythere'
         self.api_url = taxjar.API_URL
-        self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/1.1.1"}
+        self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/1.1.2"}
         self.responder_mock = MagicMock()
         self.client = taxjar.Client(self.api_key, {}, self.responder_mock)
 
