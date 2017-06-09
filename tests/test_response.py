@@ -16,7 +16,22 @@ class TestTaxJarFactory(unittest.TestCase):
             TaxJarResponse().data_from_request(self.request)
             factory_mock.called_with('type').return_value.called_with('value')
 
-    def test_data_from_failed_request(self):
+    def test_data_from_failed_400_request(self):
+        self.request.status_code = 400
+        self.request.json = MagicMock(return_value={
+            'status': 400,
+            'error': 'Bad Request',
+            'detail': 'some detail'
+        })
+        try:
+            TaxJarResponse().data_from_request(self.request)
+            self.assertTrue(False)
+        except TaxJarResponseError as err:
+            self.assertEqual(str(err), "400 Bad Request")
+            self.assertEqual(err.full_response['detail'], 'some detail')
+            self.assertEqual(err.full_response['response'], self.request.json())
+
+    def test_data_from_failed_500_request(self):
         self.request.status_code = 500
         self.request.json = MagicMock(return_value={
             'status': 500,

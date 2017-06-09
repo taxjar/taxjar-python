@@ -8,7 +8,7 @@ class TaxJarResponse(object):
 
     def data_from_request(self, request):
         response = request.json()
-        if 200 <= request.status_code <= 400:
+        if 200 <= request.status_code < 400:
             (type_name, values), = response.items()
             return TaxJarTypeFactory.build(type_name)(values)
         else:
