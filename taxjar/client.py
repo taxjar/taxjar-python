@@ -5,12 +5,23 @@ from taxjar.exceptions import TaxJarConnectionError
 
 class Client(object):
     """TaxJar Python Client"""
-    def __init__(self, api_key, options=None, responder=TaxJarResponse.from_request):
+    def __init__(self, api_key, api_url="", options=None, responder=TaxJarResponse.from_request):
         if options is None:
             options = {}
         self.api_key = api_key
+        self.api_url = api_url if api_url else taxjar.DEFAULT_API_URL
+        self.api_url += "/" + taxjar.API_VERSION + "/"
+        self.headers = options.get('headers', {})
         self.timeout = options.get('timeout', 5)
         self.responder = responder
+
+    def set_api_config(self, key, value):
+        if key is 'api_url':
+            value += "/" + taxjar.API_VERSION + "/"
+        setattr(self, key, value)
+
+    def get_api_config(self, key):
+        return getattr(self, key)
 
     def categories(self):
         """Lists all tax categories."""
@@ -111,16 +122,21 @@ class Client(object):
             data = {}
         try:
             data['timeout'] = self.timeout
-            return method(self._uri(endpoint), headers=self._headers(), **data)
+            return method(self._uri(self.api_url, endpoint), headers=self._headers(), **data)
         except requests.Timeout as err:
             raise TaxJarConnectionError(err)
         except requests.ConnectionError as err:
             raise TaxJarConnectionError(err)
 
     @staticmethod
-    def _uri(endpoint):
-        return taxjar.API_URL + endpoint
+    def _uri(api_url, endpoint):
+        return api_url + endpoint
 
-    def _headers(self):
+    def _default_headers(self):
         return {'Authorization': 'Bearer ' + self.api_key,
                 'User-Agent': 'TaxJarPython/' + taxjar.VERSION}
+
+    def _headers(self):
+        headers = self._default_headers().copy()
+        headers.update(self.headers)
+        return headers
