@@ -6,10 +6,40 @@ import taxjar
 class TestClient(unittest.TestCase):
     def setUp(self):
         self.api_key = 'heythere'
-        self.api_url = taxjar.API_URL
+        self.api_url = taxjar.DEFAULT_API_URL + "/" + taxjar.API_VERSION + "/"
         self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/1.1.3"}
         self.responder_mock = MagicMock()
-        self.client = taxjar.Client(self.api_key, {}, self.responder_mock)
+        self.client = taxjar.Client(api_key=self.api_key, options={}, responder=self.responder_mock)
+
+    def test_client_params(self):
+        self.client = taxjar.Client(api_key=self.api_key, api_url='https://api.sandbox.taxjar.com', options={
+            'headers': {
+                'X-TJ-Expected-Response': '422'
+            }
+        }, responder=self.responder_mock)
+        self.assertEqual(self.client.api_url, 'https://api.sandbox.taxjar.com/v2/')
+        self.assertEqual(self.client.headers, { 'X-TJ-Expected-Response': '422' })
+
+    def test_set_api_config(self):
+        self.client.set_api_config('api_url', 'https://api.sandbox.taxjar.com')
+        self.assertEqual(self.client.api_url, 'https://api.sandbox.taxjar.com/v2/')
+
+    def test_get_api_config(self):
+        self.client.set_api_config('api_url', 'https://api.sandbox.taxjar.com')
+        self.assertEqual(self.client.get_api_config('api_url'), self.client.api_url)
+
+    def test_custom_headers(self):
+        self.client.set_api_config('headers', {
+            'X-TJ-Expected-Response': '422'
+        })
+        self.assertEqual(self.client.headers, {
+            'X-TJ-Expected-Response': '422'
+        })
+        self.assertEqual(self.client._headers(), {
+            'X-TJ-Expected-Response': '422',
+            'Authorization': 'Bearer heythere',
+            'User-Agent': 'TaxJarPython/1.1.3'
+        })
 
     def test_rates_for_location(self):
         action = lambda _: self.client.rates_for_location('90210')
