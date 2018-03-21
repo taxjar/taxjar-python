@@ -7,7 +7,7 @@ class TestClient(unittest.TestCase):
     def setUp(self):
         self.api_key = 'heythere'
         self.api_url = taxjar.DEFAULT_API_URL + "/" + taxjar.API_VERSION + "/"
-        self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/1.1.3"}
+        self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/" + taxjar.VERSION}
         self.responder_mock = MagicMock()
         self.client = taxjar.Client(api_key=self.api_key, options={}, responder=self.responder_mock)
 
@@ -38,7 +38,7 @@ class TestClient(unittest.TestCase):
         self.assertEqual(self.client._headers(), {
             'X-TJ-Expected-Response': '422',
             'Authorization': 'Bearer heythere',
-            'User-Agent': 'TaxJarPython/1.1.3'
+            'User-Agent': 'TaxJarPython/' + taxjar.VERSION
         })
 
     def test_rates_for_location(self):
