@@ -885,6 +885,23 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78', options={'timeout':30})
 ```
 
+## Sandbox Environment
+
+You can easily configure the client to use the [TaxJar Sandbox](https://developers.taxjar.com/api/reference/#sandbox-environment):
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78', api_url='https://api.sandbox.taxjar.com')
+```
+
+For testing specific [error response codes](https://developers.taxjar.com/api/reference/#errors), pass the custom `X-TJ-Expected-Response` header:
+
+```python
+client.set_api_config('headers', {
+    'X-TJ-Expected-Response': '422'
+})
+```
+
 ## Tests
 
 A `unittest` test suite is available to ensure API functionality:
