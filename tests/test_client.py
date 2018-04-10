@@ -114,6 +114,28 @@ class TestClient(unittest.TestCase):
         action = lambda _: self.client.delete_refund(1)
         self.assert_request_occurred(action, 'delete', 'transactions/refunds/1', {})
 
+    def test_list_customers(self):
+        action = lambda _: self.client.list_customers()
+        self.assert_request_occurred(action, 'get', 'customers', {})
+
+    def test_show_customer(self):
+        action = lambda _: self.client.show_customer('123')
+        self.assert_request_occurred(action, 'get', 'customers/123', {})
+
+    def test_create_customer(self):
+        data = {'dummy': 'data'}
+        action = lambda _: self.client.create_customer(data)
+        self.assert_request_occurred(action, 'post', 'customers', data)
+
+    def test_update_customer(self):
+        data = {'dummy': 'data'}
+        action = lambda _: self.client.update_customer('123', data)
+        self.assert_request_occurred(action, 'put', 'customers/123', data)
+
+    def test_delete_customer(self):
+        action = lambda _: self.client.delete_customer('123')
+        self.assert_request_occurred(action, 'delete', 'customers/123', {})
+
     def test_nexus_regions(self):
         action = lambda _: self.client.nexus_regions()
         self.assert_request_occurred(action, 'get', 'nexus/regions', {})

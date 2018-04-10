@@ -88,6 +88,31 @@ class Client(object):
         request = self._delete('transactions/refunds/' + str(refund_id))
         return self.responder(request)
 
+    def list_customers(self, params=None):
+        """Lists existing customers."""
+        request = self._get('customers', params)
+        return self.responder(request)
+
+    def show_customer(self, customer_id):
+        """Shows an existing customer."""
+        request = self._get('customers/' + str(customer_id))
+        return self.responder(request)
+
+    def create_customer(self, customer_deets):
+        """Creates a new customer."""
+        request = self._post('customers', customer_deets)
+        return self.responder(request)
+
+    def update_customer(self, customer_id, customer_deets):
+        """Updates an existing customer."""
+        request = self._put("customers/" + str(customer_id), customer_deets)
+        return self.responder(request)
+
+    def delete_customer(self, customer_id):
+        """Deletes an existing customer."""
+        request = self._delete("customers/" + str(customer_id))
+        return self.responder(request)
+
     def nexus_regions(self):
         """Lists existing nexus locations for a TaxJar account."""
         request = self._get('nexus/regions')
