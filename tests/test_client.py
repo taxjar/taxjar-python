@@ -68,6 +68,8 @@ class TestClient(unittest.TestCase):
         data = {'dummy': 'data'}
         action = lambda _: self.client.list_orders(data)
         self.assert_request_occurred(action, 'get', 'transactions/orders', data)
+        action = lambda _: self.client.list_orders()
+        self.assert_request_occurred(action, 'get', 'transactions/orders', {})
 
     def test_show_order(self):
         action = lambda _: self.client.show_order('1001')
@@ -91,6 +93,8 @@ class TestClient(unittest.TestCase):
         data = {'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01'}
         action = lambda _: self.client.list_refunds(data)
         self.assert_request_occurred(action, 'get', 'transactions/refunds', data)
+        action = lambda _: self.client.list_refunds()
+        self.assert_request_occurred(action, 'get', 'transactions/refunds', {})
 
     def test_show_refund(self):
         action = lambda _: self.client.show_refund('1001')

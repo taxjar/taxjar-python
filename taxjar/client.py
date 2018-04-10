@@ -38,7 +38,7 @@ class Client(object):
         request = self._post('taxes', order_deets)
         return self.responder(request)
 
-    def list_orders(self, params):
+    def list_orders(self, params=None):
         """Lists existing order transactions."""
         request = self._get('transactions/orders', params)
         return self.responder(request)
@@ -63,7 +63,7 @@ class Client(object):
         request = self._delete("transactions/orders/" + str(order_id))
         return self.responder(request)
 
-    def list_refunds(self, params):
+    def list_refunds(self, params=None):
         """Lists existing refund transactions."""
         request = self._get('transactions/refunds', params)
         return self.responder(request)
