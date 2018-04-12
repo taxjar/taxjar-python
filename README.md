@@ -727,6 +727,216 @@ client.delete_refund('321')
 }>
 ```
 
+### Listing customers
+
+#### Definition
+
+```python
+client.list_customers
+```
+
+#### Example Request
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
+client.list_customers()
+```
+
+#### Example Response
+
+```python
+['123', '124', '125']
+```
+
+### Show customer
+
+#### Definition
+
+```python
+client.show_customer
+```
+
+#### Example Request
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
+client.show_customer('321')
+```
+
+#### Example Response
+
+```python
+<TaxJarCustomer {
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'exempt_regions': [<TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'FL'
+  }>, <TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'PA'
+  }>],
+  'name': 'Dunder Mifflin Paper Company',
+  'country': 'US',
+  'state': 'PA',
+  'zip': '18504',
+  'city': 'Scranton',
+  'street': '1725 Slough Avenue'
+}>
+```
+
+### Create customer
+
+#### Definition
+
+```python
+client.create_customer
+```
+
+#### Example Request
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
+client.create_customer({
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'name': 'Dunder Mifflin Paper Company',
+  'exempt_regions': [
+    {
+      'country': 'US',
+      'state': 'FL'
+    },
+    {
+      'country': 'US',
+      'state': 'PA'
+    }
+  ],
+  'country': 'US',
+  'state': 'PA',
+  'zip': '18504',
+  'city': 'Scranton',
+  'street': '1725 Slough Avenue'
+})
+```
+
+#### Example Response
+
+```python
+<TaxJarCustomer {
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'exempt_regions': [<TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'FL'
+  }>, <TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'PA'
+  }>],
+  'name': 'Dunder Mifflin Paper Company',
+  'country': 'US',
+  'state': 'PA',
+  'zip': '18504',
+  'city': 'Scranton',
+  'street': '1725 Slough Avenue'
+}>
+```
+
+### Update customer
+
+#### Definition
+
+```python
+client.update_customer
+```
+
+#### Example Request
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
+client.update_customer({
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'name': 'Sterling Cooper',
+  'exempt_regions': [
+    {
+      'country': 'US',
+      'state': 'NY'
+    }
+  ],
+  'country': 'US',
+  'state': 'NY',
+  'zip': '10010',
+  'city': 'New York',
+  'street': '405 Madison Ave'
+})
+```
+
+#### Example Response
+
+```python
+<TaxJarCustomer {
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'exempt_regions': [<TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'NY'
+  }>],
+  'name': 'Sterling Cooper',
+  'country': 'US',
+  'state': 'NY',
+  'zip': '10010',
+  'city': 'New York',
+  'street': '405 Madison Ave'
+}>
+```
+
+### Delete customer
+
+#### Definition
+
+```python
+client.delete_customer
+```
+
+#### Example Request
+
+```python
+import taxjar
+client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
+
+client.delete_customer('321')
+```
+
+#### Example Response
+
+```python
+<TaxJarCustomer {
+  'customer_id': '123',
+  'exemption_type': 'wholesale',
+  'exempt_regions': [<TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'FL'
+  }>, <TaxJarExemptRegion {
+    'country': 'US',
+    'state': 'PA'
+  }>],
+  'name': 'Dunder Mifflin Paper Company',
+  'country': 'US',
+  'state': 'PA',
+  'zip': '18504',
+  'city': 'Scranton',
+  'street': '1725 Slough Avenue'
+}>
+```
+
 ### List nexus regions
 
 #### Definition
