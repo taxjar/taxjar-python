@@ -764,7 +764,7 @@ client.show_customer
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.show_customer('321')
+client.show_customer('123')
 ```
 
 #### Example Response
@@ -912,7 +912,7 @@ client.delete_customer
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.delete_customer('321')
+client.delete_customer('123')
 ```
 
 #### Example Response
