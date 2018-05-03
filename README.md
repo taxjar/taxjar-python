@@ -470,7 +470,7 @@ client.delete_order('123')
 }>
 ```
 
-### Listing refund transactions
+### List refund transactions
 
 #### Definition
 
@@ -727,7 +727,7 @@ client.delete_refund('321')
 }>
 ```
 
-### Listing customers
+### List customers
 
 #### Definition
 
