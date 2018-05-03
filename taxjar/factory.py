@@ -2,6 +2,7 @@ from taxjar.data.rate import TaxJarRate
 from taxjar.data.category import TaxJarCategories
 from taxjar.data.tax import TaxJarTax
 from taxjar.data.order import TaxJarOrder, TaxJarOrders
+from taxjar.data.customer import TaxJarCustomer, TaxJarCustomers
 from taxjar.data.region import TaxJarRegions
 from taxjar.data.validation import TaxJarValidation
 from taxjar.data.summary_rate import TaxJarSummaryRates
@@ -18,6 +19,8 @@ class TaxJarTypeFactory(object):
             'order': TaxJarOrder,
             'refunds': TaxJarOrders,
             'refund': TaxJarOrder,
+            'customer': TaxJarCustomer,
+            'customers': TaxJarCustomers,
             'regions': TaxJarRegions,
             'validation': TaxJarValidation,
             'summary_rates': TaxJarSummaryRates
