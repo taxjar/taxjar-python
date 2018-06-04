@@ -118,9 +118,9 @@ class Client(object):
         request = self._get('nexus/regions')
         return self.responder(request)
 
-    def validate(self, vat):
+    def validate(self, vat_deets):
         """Validates an existing VAT identification number against VIES."""
-        request = self._get('validation', {'vat': vat})
+        request = self._get('validation', vat_deets)
         return self.responder(request)
 
     def summary_rates(self):
