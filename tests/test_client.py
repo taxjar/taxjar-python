@@ -141,7 +141,7 @@ class TestClient(unittest.TestCase):
         self.assert_request_occurred(action, 'get', 'nexus/regions', {})
 
     def test_validate(self):
-        action = lambda _: self.client.validate('1234')
+        action = lambda _: self.client.validate({'vat': '1234'})
         self.assert_request_occurred(action, 'get', 'validation', {'vat': '1234'})
 
     def test_summary_rates(self):
