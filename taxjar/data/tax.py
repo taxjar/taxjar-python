@@ -1,5 +1,6 @@
 from jsonobject import JsonObject, BooleanProperty, ObjectProperty, StringProperty
 from taxjar.data.float_property import TaxJarFloatProperty
+from taxjar.data.jurisdictions import TaxJarJurisdictions
 from taxjar.data.breakdown import TaxJarBreakdown
 
 class TaxJarTax(JsonObject):
@@ -13,5 +14,7 @@ class TaxJarTax(JsonObject):
     freight_taxable = BooleanProperty()
 
     tax_source = StringProperty()
+
+    jurisdictions = ObjectProperty(TaxJarJurisdictions)
 
     breakdown = ObjectProperty(TaxJarBreakdown)
