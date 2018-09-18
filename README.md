@@ -13,8 +13,8 @@ Python 2.6+ or Python 3+
 
 TaxJar uses the following dependencies as specified in `setup.py`:
 
-- [Requests](https://github.com/kennethreitz/requests) HTTP library for making RESTful requests to SmartCalcs.
-- [jsonobject](https://github.com/dimagi/jsonobject) Simple JSON object mapping for Python.
+* [Requests](https://github.com/kennethreitz/requests) HTTP library for making RESTful requests to SmartCalcs.
+* [jsonobject](https://github.com/dimagi/jsonobject) Simple JSON object mapping for Python.
 
 ## Getting Started
 
@@ -203,6 +203,12 @@ client.tax_for_order({
     'special_tax_rate': 0.015,
     'city_taxable_amount': 0,
     'tax_collectable': 1.31
+  }>,
+  'jurisdictions': <TaxJarJurisdictions {
+    'country': 'US',
+    'state': 'CA',
+    'county': 'LOS ANGELES',
+    'city': 'LOS ANGELES'
   }>,
   'has_nexus': True,
   'tax_source': 'destination',
