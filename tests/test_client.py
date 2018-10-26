@@ -140,6 +140,11 @@ class TestClient(unittest.TestCase):
         action = lambda _: self.client.nexus_regions()
         self.assert_request_occurred(action, 'get', 'nexus/regions', {})
 
+    def test_validate_address(self):
+        data = {'country': 'US', 'state': 'AZ', 'zip': '85297', 'city': 'Gilbert', 'street': '3301 South Greenfield Rd'}
+        action = lambda _: self.client.validate_address(data)
+        self.assert_request_occurred(action, 'post', 'addresses/validate', data)
+
     def test_validate(self):
         action = lambda _: self.client.validate({'vat': '1234'})
         self.assert_request_occurred(action, 'get', 'validation', {'vat': '1234'})
