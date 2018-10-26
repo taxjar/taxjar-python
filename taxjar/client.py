@@ -118,6 +118,11 @@ class Client(object):
         request = self._get('nexus/regions')
         return self.responder(request)
 
+    def validate_address(self, address_deets):
+        """Validates a customer address and returns back a collection of address matches."""
+        request = self._post('addresses/validate', address_deets)
+        return self.responder(request)
+
     def validate(self, vat_deets):
         """Validates an existing VAT identification number against VIES."""
         request = self._get('validation', vat_deets)

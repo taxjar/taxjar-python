@@ -4,6 +4,7 @@ from taxjar.data.tax import TaxJarTax
 from taxjar.data.order import TaxJarOrder, TaxJarOrders
 from taxjar.data.customer import TaxJarCustomer, TaxJarCustomers
 from taxjar.data.region import TaxJarRegions
+from taxjar.data.address import TaxJarAddress, TaxJarAddresses
 from taxjar.data.validation import TaxJarValidation
 from taxjar.data.summary_rate import TaxJarSummaryRates
 from taxjar.exceptions import TaxJarTypeError
@@ -22,6 +23,7 @@ class TaxJarTypeFactory(object):
             'customer': TaxJarCustomer,
             'customers': TaxJarCustomers,
             'regions': TaxJarRegions,
+            'addresses': TaxJarAddresses,
             'validation': TaxJarValidation,
             'summary_rates': TaxJarSummaryRates
         }
