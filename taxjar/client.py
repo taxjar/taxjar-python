@@ -43,9 +43,9 @@ class Client(object):
         request = self._get('transactions/orders', params)
         return self.responder(request)
 
-    def show_order(self, order_id):
+    def show_order(self, order_id, params=None):
         """Shows an existing order transaction."""
-        request = self._get('transactions/orders/' + str(order_id))
+        request = self._get('transactions/orders/' + str(order_id), params)
         return self.responder(request)
 
     def create_order(self, order_deets):
@@ -58,9 +58,9 @@ class Client(object):
         request = self._put("transactions/orders/" + str(order_id), order_deets)
         return self.responder(request)
 
-    def delete_order(self, order_id):
+    def delete_order(self, order_id, params=None):
         """Deletes an existing order transaction."""
-        request = self._delete("transactions/orders/" + str(order_id))
+        request = self._delete("transactions/orders/" + str(order_id), params)
         return self.responder(request)
 
     def list_refunds(self, params=None):
@@ -68,9 +68,9 @@ class Client(object):
         request = self._get('transactions/refunds', params)
         return self.responder(request)
 
-    def show_refund(self, refund_id):
+    def show_refund(self, refund_id, params=None):
         """Shows an existing refund transaction."""
-        request = self._get('transactions/refunds/' + str(refund_id))
+        request = self._get('transactions/refunds/' + str(refund_id), params)
         return self.responder(request)
 
     def create_refund(self, refund_deets):
@@ -83,9 +83,9 @@ class Client(object):
         request = self._put('transactions/refunds/' + str(refund_id), refund_deets)
         return self.responder(request)
 
-    def delete_refund(self, refund_id):
+    def delete_refund(self, refund_id, params=None):
         """Deletes an existing refund transaction."""
-        request = self._delete('transactions/refunds/' + str(refund_id))
+        request = self._delete('transactions/refunds/' + str(refund_id), params)
         return self.responder(request)
 
     def list_customers(self, params=None):
@@ -144,8 +144,10 @@ class Client(object):
     def _put(self, endpoint, data):
         return self._request(requests.put, endpoint, {'json': data})
 
-    def _delete(self, endpoint):
-        return self._request(requests.delete, endpoint)
+    def _delete(self, endpoint, data=None):
+        if data is None:
+            data = {}
+        return self._request(requests.delete, endpoint, {'params': data})
 
     def _request(self, method, endpoint, data=None):
         if data is None:
