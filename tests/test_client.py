@@ -74,6 +74,10 @@ class TestClient(unittest.TestCase):
     def test_show_order(self):
         action = lambda _: self.client.show_order('1001')
         self.assert_request_occurred(action, 'get', 'transactions/orders/1001', {})
+        action = lambda _: self.client.show_order('1001', {'provider': 'api'})
+        self.assert_request_occurred(action, 'get', 'transactions/orders/1001', {
+            'provider': 'api'
+        })
 
     def test_create_order(self):
         data = {'dummy': 'data'}
@@ -88,6 +92,10 @@ class TestClient(unittest.TestCase):
     def test_delete_order(self):
         action = lambda _: self.client.delete_order(1)
         self.assert_request_occurred(action, 'delete', 'transactions/orders/1', {})
+        action = lambda _: self.client.delete_order(1, {'provider': 'api'})
+        self.assert_request_occurred(action, 'delete', 'transactions/orders/1', {
+            'provider': 'api'
+        })
 
     def test_list_refunds(self):
         data = {'from_transaction_date': '2016/01/01', 'to_transaction_date': '2017/01/01'}
@@ -99,6 +107,10 @@ class TestClient(unittest.TestCase):
     def test_show_refund(self):
         action = lambda _: self.client.show_refund('1001')
         self.assert_request_occurred(action, 'get', 'transactions/refunds/1001', {})
+        action = lambda _: self.client.show_refund('1001', {'provider': 'api'})
+        self.assert_request_occurred(action, 'get', 'transactions/refunds/1001', {
+            'provider': 'api'
+        })
 
     def test_create_refund(self):
         data = {'dummy': 'data'}
@@ -113,6 +125,10 @@ class TestClient(unittest.TestCase):
     def test_delete_refund(self):
         action = lambda _: self.client.delete_refund(1)
         self.assert_request_occurred(action, 'delete', 'transactions/refunds/1', {})
+        action = lambda _: self.client.delete_refund(1, {'provider': 'api'})
+        self.assert_request_occurred(action, 'delete', 'transactions/refunds/1', {
+            'provider': 'api'
+        })
 
     def test_list_customers(self):
         action = lambda _: self.client.list_customers()
@@ -166,10 +182,8 @@ class TestClient(unittest.TestCase):
 
     def _request_args(self, method, params):
         args = {'timeout': 5}
-        if method == 'get':
+        if method == 'get' or method == 'delete':
             args['params'] = params
-        elif method == 'delete':
-            pass
         else:
             args['json'] = params
         return args
