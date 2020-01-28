@@ -27,7 +27,7 @@ if __name__ == '__main__':
     order = taxjar.show_order(tid)
     print(order)
 
-    order = taxjar.update_order(tid, {'transaction_id': tid, 'from_city': "Santo Barbara"})
+    order = taxjar.update_order(tid, {'from_city': "Santo Barbara"})
     print(order)
 
     order = taxjar.delete_order(tid)
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     order = taxjar.show_refund(tid)
     print(order)
 
-    order = taxjar.update_refund(tid, {'transaction_id': tid, 'from_city': "Santo Barbara", 'amount': 16.5, 'shipping': 2.1, 'sales_tax': 1.1})
+    order = taxjar.update_refund(tid, {'from_city': "Santo Barbara", 'amount': 16.5, 'shipping': 2.1, 'sales_tax': 1.1})
     print(order)
 
     order = taxjar.delete_refund(tid)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     regions = taxjar.nexus_regions()
     [print(r) for r in regions]
 
-    validation = taxjar.validate("FR40303265045")
+    validation = taxjar.validate({'vat': "FR40303265045"})
     print(validation)
 
     rates = taxjar.summary_rates()
