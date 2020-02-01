@@ -400,7 +400,6 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.update_order('123', {
-    'transaction_id': '123',
     'amount': 283.6,
     'shipping': 5,
     'sales_tax': 1.04,
@@ -726,7 +725,6 @@ import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
 client.update_refund('123-refund', {
-  'transaction_id': '123-refund',
   'transaction_reference_id': '123',
   'amount': -10.35,
   'shipping': -5,
@@ -971,8 +969,7 @@ client.update_customer
 import taxjar
 client = taxjar.Client(api_key='48ceecccc8af930bd02597aec0f84a78')
 
-client.update_customer({
-  'customer_id': '123',
+client.update_customer('123', {
   'exemption_type': 'wholesale',
   'name': 'Sterling Cooper',
   'exempt_regions': [
@@ -1156,7 +1153,7 @@ nexus_regions = client.nexus_regions()
 #### Definition
 
 ```python
-client.nexus_regions
+client.validate_address
 ```
 #### Example Request
 
