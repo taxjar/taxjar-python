@@ -1,13 +1,14 @@
-import unittest
+import re
 from mock import MagicMock, patch
 import requests
+import unittest
 import taxjar
 
 class TestClient(unittest.TestCase):
     def setUp(self):
         self.api_key = 'heythere'
         self.api_url = taxjar.DEFAULT_API_URL + "/" + taxjar.API_VERSION + "/"
-        self.headers = {"Authorization": "Bearer heythere", "User-Agent": "TaxJarPython/" + taxjar.VERSION}
+        self.headers = {"Authorization": "Bearer heythere"}
         self.responder_mock = MagicMock()
         self.client = taxjar.Client(api_key=self.api_key, options={}, responder=self.responder_mock)
 
@@ -35,11 +36,9 @@ class TestClient(unittest.TestCase):
         self.assertEqual(self.client.headers, {
             'X-TJ-Expected-Response': '422'
         })
-        self.assertEqual(self.client._headers(), {
-            'X-TJ-Expected-Response': '422',
-            'Authorization': 'Bearer heythere',
-            'User-Agent': 'TaxJarPython/' + taxjar.VERSION
-        })
+        self.assertEqual(self.client._headers()['X-TJ-Expected-Response'], '422')
+        self.assertEqual(self.client._headers()['Authorization'], 'Bearer heythere')
+        self.assertRegexpMatches(self.client._headers()['User-Agent'], re.compile('TaxJar/Python \\(.+\\) taxjar-python/\\d+\\.\\d+\\.\\d+'))
 
     def test_rates_for_location(self):
         action = lambda _: self.client.rates_for_location('90210')
@@ -175,7 +174,7 @@ class TestClient(unittest.TestCase):
             action(0)
             request_mock.assert_called_with(
                 url,
-                headers=self.headers,
+                headers=self.client._headers(),
                 **self._request_args(request_method, params)
             )
             self.responder_mock.assert_called_with(request_mock.return_value)
