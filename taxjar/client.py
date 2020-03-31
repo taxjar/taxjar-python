@@ -1,3 +1,7 @@
+import os
+import ssl
+import string
+import sys
 import requests
 import taxjar
 from taxjar.response import TaxJarResponse
@@ -164,9 +168,19 @@ class Client(object):
     def _uri(api_url, endpoint):
         return api_url + endpoint
 
+    @staticmethod
+    def _get_user_agent():
+        platform = ' '.join(os.uname())
+        python_version = '.'.join((str(i) for i in sys.version_info[0:3]))
+        try:
+            open_ssl_version = ssl.OPENSSL_VERSION
+        except AttributeError:
+            open_ssl_version = ''
+        return 'TaxJar/Python (%s; python %s; %s) taxjar-python/%s' % (platform, python_version, open_ssl_version, taxjar.VERSION)
+
     def _default_headers(self):
         return {'Authorization': 'Bearer ' + self.api_key,
-                'User-Agent': 'TaxJarPython/' + taxjar.VERSION}
+                'User-Agent': self._get_user_agent()}
 
     def _headers(self):
         headers = self._default_headers().copy()
