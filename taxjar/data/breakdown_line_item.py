@@ -2,7 +2,7 @@ from jsonobject import JsonObject
 from taxjar.data.float_property import TaxJarFloatProperty
 
 class TaxJarBreakdownLineItem(JsonObject):
-    # NB: SmartCalcs can return either string or integer
+    # NB: can return either string or integer
     # `id` is a valid property, but isn't enforced here
     # id = StringProperty()
 
