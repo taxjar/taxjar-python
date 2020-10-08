@@ -1,4 +1,4 @@
-import os
+import platform
 import ssl
 import string
 import sys
@@ -170,13 +170,13 @@ class Client(object):
 
     @staticmethod
     def _get_user_agent():
-        platform = ' '.join(os.uname())
+        platform_str = ' '.join(platform.uname())
         python_version = '.'.join((str(i) for i in sys.version_info[0:3]))
         try:
             open_ssl_version = ssl.OPENSSL_VERSION
         except AttributeError:
             open_ssl_version = ''
-        return 'TaxJar/Python (%s; python %s; %s) taxjar-python/%s' % (platform, python_version, open_ssl_version, taxjar.VERSION)
+        return 'TaxJar/Python (%s; python %s; %s) taxjar-python/%s' % (platform_str, python_version, open_ssl_version, taxjar.VERSION)
 
     def _default_headers(self):
         return {'Authorization': 'Bearer ' + self.api_key,
