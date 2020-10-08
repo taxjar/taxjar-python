@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     name='taxjar',
-    version='1.9.0',
+    version='1.9.1',
     description='Sales tax API client for Python',
     author='TaxJar',
     author_email='support@taxjar.com',
     url='https://github.com/taxjar/taxjar-python',
-    download_url='https://github.com/taxjar/taxjar-python/archive/v1.9.0.zip',
+    download_url='https://github.com/taxjar/taxjar-python/archive/v1.9.1.zip',
     packages=['taxjar', 'taxjar.data'],
     classifiers=[
         "Programming Language :: Python :: 2.6",

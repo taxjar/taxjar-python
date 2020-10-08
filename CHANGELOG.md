@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.9.1] - 2020-10-08
+- Fix issue with custom user agent on non-Unix platforms
+
 ## [1.9.0] - 2020-03-31
 - Add information to custom user agent for debugging and informational purposes
 
@@ -48,7 +51,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-05-05
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-python/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-python/compare/v1.9.1...HEAD
+[1.9.1]: https://github.com/taxjar/taxjar-python/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/taxjar/taxjar-python/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/taxjar/taxjar-python/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/taxjar/taxjar-python/compare/v1.6.0...v1.7.0
