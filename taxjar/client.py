@@ -18,6 +18,7 @@ class Client(object):
         self.headers = options.get('headers', {})
         self.timeout = options.get('timeout', 5)
         self.responder = responder
+        self.session = requests.Session()
 
     def set_api_config(self, key, value):
         if key is 'api_url':
@@ -140,18 +141,18 @@ class Client(object):
     def _get(self, endpoint, data=None):
         if data is None:
             data = {}
-        return self._request(requests.get, endpoint, {'params': data})
+        return self._request(self.session.get, endpoint, {'params': data})
 
     def _post(self, endpoint, data):
-        return self._request(requests.post, endpoint, {'json': data})
+        return self._request(self.session.post, endpoint, {'json': data})
 
     def _put(self, endpoint, data):
-        return self._request(requests.put, endpoint, {'json': data})
+        return self._request(self.session.put, endpoint, {'json': data})
 
     def _delete(self, endpoint, data=None):
         if data is None:
             data = {}
-        return self._request(requests.delete, endpoint, {'params': data})
+        return self._request(self.session.delete, endpoint, {'params': data})
 
     def _request(self, method, endpoint, data=None):
         if data is None:

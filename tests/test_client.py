@@ -170,7 +170,7 @@ class TestClient(unittest.TestCase):
 
     def assert_request_occurred(self, action, request_method, uri, params):
         url = self.api_url + uri
-        with patch.object(requests, request_method) as request_mock:
+        with patch.object(requests.Session, request_method) as request_mock:
             action(0)
             request_mock.assert_called_with(
                 url,
