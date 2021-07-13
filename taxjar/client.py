@@ -20,7 +20,7 @@ class Client(object):
         self.responder = responder
 
     def set_api_config(self, key, value):
-        if key is 'api_url':
+        if key == 'api_url':
             value += "/" + taxjar.API_VERSION + "/"
         setattr(self, key, value)
 
