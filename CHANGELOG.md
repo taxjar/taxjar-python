@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-07-13
+- Use Session objects in Requests library for reusing TCP connections
+- Fix syntax warning emitted by client in Python 3.8
+
 ## [1.9.2] - 2021-02-16
 - Update jsonobject dependency for Python 3.9 compatibility
 
@@ -54,7 +58,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2017-05-05
 - Initial release
 
-[Unreleased]: https://github.com/taxjar/taxjar-python/compare/v1.9.2...HEAD
+[Unreleased]: https://github.com/taxjar/taxjar-python/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/taxjar/taxjar-python/compare/v1.9.2...v2.0.0
 [1.9.2]: https://github.com/taxjar/taxjar-python/compare/v1.9.1...v1.9.2
 [1.9.1]: https://github.com/taxjar/taxjar-python/compare/v1.9.0...v1.9.1
 [1.9.0]: https://github.com/taxjar/taxjar-python/compare/v1.8.0...v1.9.0
