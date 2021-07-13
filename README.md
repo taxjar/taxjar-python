@@ -1,7 +1,5 @@
 # TaxJar Sales Tax API for Python ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/taxjar/taxjar-python?style=flat-square&label=release&sort=semver) [![Build Status](https://travis-ci.com/taxjar/taxjar-python.svg?branch=master)](https://travis-ci.com/taxjar/taxjar-python)
 
-<a href="https://developers.taxjar.com"><img src="https://www.taxjar.com/img/TJ_logo_color_office_png.png" alt="TaxJar" width="220"></a>
-
 Official Python client for the [TaxJar API](https://www.taxjar.com/api/). For the API documentation, please visit [https://developers.taxjar.com/api](https://developers.taxjar.com/api/reference/?python).
 
 * This wrapper supports 100% of the [TaxJar API Version 2](https://developers.taxjar.com/api/#introduction)
