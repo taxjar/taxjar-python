@@ -38,7 +38,7 @@ class TestClient(unittest.TestCase):
         })
         self.assertEqual(self.client._headers()['X-TJ-Expected-Response'], '422')
         self.assertEqual(self.client._headers()['Authorization'], 'Bearer heythere')
-        self.assertRegexpMatches(self.client._headers()['User-Agent'], re.compile('TaxJar/Python \\(.+\\) taxjar-python/\\d+\\.\\d+\\.\\d+'))
+        self.assertRegex(self.client._headers()['User-Agent'], re.compile('TaxJar/Python \\(.+\\) taxjar-python/\\d+\\.\\d+\\.\\d+'))
 
     def test_rates_for_location(self):
         action = lambda _: self.client.rates_for_location('90210')
