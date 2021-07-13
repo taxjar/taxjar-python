@@ -3,6 +3,7 @@ from mock import MagicMock, patch
 import requests
 import unittest
 import taxjar
+import sys
 
 class TestClient(unittest.TestCase):
     def setUp(self):
@@ -38,7 +39,7 @@ class TestClient(unittest.TestCase):
         })
         self.assertEqual(self.client._headers()['X-TJ-Expected-Response'], '422')
         self.assertEqual(self.client._headers()['Authorization'], 'Bearer heythere')
-        self.assertRegex(self.client._headers()['User-Agent'], re.compile('TaxJar/Python \\(.+\\) taxjar-python/\\d+\\.\\d+\\.\\d+'))
+        self._assertRegexp(self.client._headers()['User-Agent'], re.compile('TaxJar/Python \\(.+\\) taxjar-python/\\d+\\.\\d+\\.\\d+'))
 
     def test_rates_for_location(self):
         action = lambda _: self.client.rates_for_location('90210')
@@ -186,3 +187,9 @@ class TestClient(unittest.TestCase):
         else:
             args['json'] = params
         return args
+
+    def _assertRegexp(self, a, b):
+        if sys.version_info >= (3,2):
+            return self.assertRegex(a, b)
+        else:
+            return self.assertRegexpMatches(a, b)
